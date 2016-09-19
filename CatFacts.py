@@ -1,4 +1,4 @@
-import urllib, json, time, sys, argparse, requests, random
+import urllib, json, time, sys, argparse, requests, random, string
 from twilio.rest import TwilioRestClient
 
 
@@ -18,8 +18,13 @@ def createClient(data):
 
 def sendMessage(twilioCli,fact,target,sender):
     message = twilioCli.messages.create(body = fact, from_= sender, to = target)
+
+def generateRandomString():
+    return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(random.randint(5,20)))
+
 def generateFooter():
-    return '<To cancel Cat Facts please reply '.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(random.random()*20))+'>'
+    return '\n<To cancel Cat Facts please reply ' + generateRandomString() + '>'
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-t","--target", help="The target's phone number")
@@ -49,10 +54,15 @@ def main():
     header = "Cat Fact!\n"
     first_message = "Thanks for signing up to Cat Facts! You will now receive fun daily facts about CATS! >o<"
     sendMessage(client,first_message,target,data[2])
+
     for i in range(0,messages):
-        time.sleep(delay)
         fact = getFact()
-        sendMessage(client,header + fact,target,data[2])
-        print("Fact", i + 1,'; ', fact,'\n' )
+        message= header + fact
+        if random.random()>=.9:
+            message= message + generateFooter()
+        print( message )
+        time.sleep(delay)
+        sendMessage(client,message,target,data[2])
+        # print("Fact", i + 1,'; ', fact,'\n' )
 
 main()
