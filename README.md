@@ -7,7 +7,11 @@ config file should be formatted like this
 
 {"twilio":
     {
-      "account_sid":"ACb62d7d26c99941f1d1560c37c940b653",
-      "auth_token":"cd0688782045ea5707dffe3150db555e"
+      "account_sid":"affpoas8f98fa8sa9f8f0as08fsa0f8a0fs",
+      "auth_token":"jafkljflkasjfkj2khj4lkh5rjkhg32"
+    },
+ "user":
+    {
+      "phone_number":"9999999999"
     }
 }
