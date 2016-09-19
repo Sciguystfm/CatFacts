@@ -13,6 +13,22 @@ def main():
                     type=int)
     parser.add_argument("-d","--delay", help="The delay between messages (in seconds)",
                     type=int)
-    parser.parse_args()
-    
+    args = parser.parse_args()
+
+    if args.target is None:
+        target = input('\nWhat is your targets phone number?\n')
+    else:
+        target = args.target
+
+    if args.messages is None:
+        messages = input('\nHow many messages do you want to send?\n')
+    else:
+        messages = args.messages
+
+    if args.delay is None:
+        delay = input('\nHow long of a delay between messages? (In seconds)\n')
+    else:
+        delay = args.delay
+
+
 main()
