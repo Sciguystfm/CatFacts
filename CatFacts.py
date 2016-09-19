@@ -1,6 +1,12 @@
 import urllib, json, time, sys, argparse, requests
 from twilio.rest import TwilioRestClient
 
+
+
+def loadCredentials():
+    config = json.load(open('config.json', 'r'))
+    return(config['twilio']['account_sid'],config['twilio']['auth_token'])
+
 def getFact():
     catFactUrl="http://catfacts-api.appspot.com/api/facts"
     response = requests.get(catFactUrl)
@@ -29,6 +35,5 @@ def main():
         delay = input('\nHow long of a delay between messages? (In seconds)\n')
     else:
         delay = args.delay
-
 
 main()
