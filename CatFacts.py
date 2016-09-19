@@ -1,10 +1,6 @@
 import urllib, json, time, sys, argparse, requests
 from twilio.rest import TwilioRestClient
 
-def getFact():
-    catFactUrl=""
-    response = requests.get(catFactUrl)
-    r.json()
 
 def main():
     parser = argparse.ArgumentParser()
